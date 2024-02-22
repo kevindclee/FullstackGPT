@@ -1,6 +1,7 @@
 import streamlit as st
 from langchain.prompts import PromptTemplate
 from datetime import datetime as dt
+import time
 
 today = dt.today().strftime("%H:%M:%S")
 st.title(today)
@@ -65,3 +66,21 @@ with tab2:
 
 with tab3:
     st.write('c')
+
+# Status
+with st.status("Embedding file...", expanded=True) as status:
+    time.sleep(2)
+    st.write("Getting the file")
+    time.sleep(2)
+    st.write("Embedding the file")
+    time.sleep(2)
+    st.write("Caching the file")
+    status.update(label="Error", state="error")
+
+# chat_message, chat_input
+with st.chat_message("human"):
+    st.write("Hellooo")
+with st.chat_message("ai"):
+    st.write("how are you")
+
+st.chat_input("Send a message to the ai")
